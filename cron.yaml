@@ -1,0 +1,11 @@
+cron:
+
+- description: import events
+  url: /import_events
+  schedule: every 1 hours
+- description: import tweets
+  url: /import_events
+  schedule: every 1 hours
+- description: create conflicts
+  url: /create_conflicts
+  schedule: every 1 hours

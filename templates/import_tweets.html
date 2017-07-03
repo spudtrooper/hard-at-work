@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+Import Tweets
+{% endblock %}
+
+{% block body %}
+
+<div>
+  <ul>
+    <li>Imported tweets: <b>{{ num_imported_tweets }}</b></li>
+    <li>Existing tweets: <b>{{ num_existing_tweets }}</b></li>
+  </ul>
+</div>
+
+<h2>Imported</h2>
+<ul>
+{% for tweet in imported_tweets %}
+<li>
+{% include "_tweet.html" %}
+</li>
+{% endfor %}
+</ul>
+
+<h2>Existing</h2>
+<ul>
+{% for tweet in existing_tweets %}
+<li>
+{% include "_tweet.html" %}
+</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

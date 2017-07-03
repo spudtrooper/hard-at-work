@@ -1,0 +1,21 @@
+.vis-item.event {
+    background-color: #F2E29F;
+    color: #1F2D3D;
+/*    max-width: 300px; */
+/*    min-width: 300px; */
+    /* word-wrap: break-word; */
+}
+
+.vis-item-content.event {
+    /* max-width: 300px; */
+    word-wrap: break-word;
+}
+
+.vis-item.tweet {
+    background-color: #ecf3fd;
+    color: #1F2D3D;
+}
+
+.vis-item .vis-item-overflow {
+  overflow: visible;
+}

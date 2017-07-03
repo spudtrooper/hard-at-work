@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+
+{% block head %}
+<script src="/js/moment.min.js"></script>
+<script src="/js/vis.js"></script>
+<link href="/css/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+<script src="/js/twitterer.js"></script>
+<script src="/js/timeline.js"></script>
+<link href="/css/timeline.css" rel=stylesheet></link>
+<script>
+$(document).ready(init.bind(null, "{{ date }}"));
+</script>
+{% endblock %}
+
+{% block title %}
+Hard at Work: <em>{{ date }}</em>
+{% endblock %}
+
+{% block body %}
+{% include "_top_menu.html" %}
+<div id="timeline"></div>
+{% endblock %}

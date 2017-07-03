@@ -1,0 +1,67 @@
+{% extends "_base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+Hard at Work: <em>About</em>
+{% endblock %}
+
+{% block body %}
+{% include "_top_menu.html" %}
+
+<p>
+  This site joins "Presidential tweets" and the official events during
+  which they were sent.
+</p>
+
+<ul>
+  <li>
+    <a href="/conflicts">Conflicts</a> shows tweets that coincided with
+    official meetings
+  </li>
+  <li>
+    <a href="/dates">Dates</a> is the full list of conflicting dates,
+    each showing a timeline of tweets and events for that date
+  </li>
+</ul>
+
+<p>
+  Sources:
+  <ul>
+    <li>
+      Events come
+      from <a href="https://www.whitehouse.gov/1600daily">whitehouse.gov/1600daily</a>
+      and archived versions
+      from <a href="http://archive.org">archive.org</a>.
+    </li>
+    <li>
+      Tweets come from <a href="http://twitter.com">Twitter</a>.
+  </ul>
+</p>
+
+
+
+<p>
+  We take the following liberties (I think the point still gets across):
+  <ul>
+    <li>
+      When the whitehouse publishes schedules they don't give meeting
+      times, hence no end times. So, the end time of an event is assumed to
+      be the start time of the next event minus 5 minutes.
+    </li>
+    <li>
+      The last event of the day is synthetically and conservatively
+      given a time of one hour, since there is no following
+      event. This is usually an underestimate, since this event often
+      involves travel (e.g. to an out-of-state golf club or Dave and
+      Busters) and takes > 1 hour.
+    </li>
+  </ul>
+  If you don't buy these assumptions, <em>conflicting</em> tweets can
+  just be seen as those sent from the President in the middle of a
+  week day.
+</p>
+
+{% endblock %}

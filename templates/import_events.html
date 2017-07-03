@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+Import events
+{% endblock %}
+
+{% block body %}
+
+<div>
+  <ul>
+    <li>URL: <a href="{{ url }}">{{ url }}</a></li>
+    <li>Imported events: <b>{{ num_imported_events }}</b></li>
+    <li>Existing events: <b>{{ num_existing_events }}</b></li>
+  </ul>
+</div>
+
+<h2>Imported</h2>
+<ul>
+{% for event in imported_events %}
+<li>
+{% include "_event.html" %}
+</li>
+{% endfor %}
+</ul>
+
+<h2>Existing</h2>
+<ul>
+{% for event in existing_events %}
+<li>
+{% include "_event.html" %}
+</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

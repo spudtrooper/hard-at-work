@@ -1,0 +1,22 @@
+application: hard-at-work
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /css
+  static_dir: static/css
+- url: /js
+  static_dir: static/js
+- url: /import_tweets
+  login: admin
+  script: main.cron
+- url: /import_events
+  login: admin
+  script: main.cron
+- url: /create_conflicts
+  login: admin
+  script: main.cron
+- url: /.*
+  script: main.app

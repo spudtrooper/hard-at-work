@@ -1,0 +1,27 @@
+#conflicts table tr {
+    width: 100%;
+}
+
+#conflicts .row .block:nth-child(1) {
+    width: 40%;
+}
+
+#conflicts .row .block:nth-child(2) {
+    width: 40%;
+}
+
+#conflicts .row .block:nth-child(3) {
+    width: 20%;
+}
+
+#conflicts .date {
+}
+
+.row {
+  width: 100%;
+  margin: 0 auto;
+}
+.block {
+  width: 100px;
+  float: left;
+}

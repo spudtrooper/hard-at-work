@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+Hard at Work: <em>Dates</em>
+{% endblock %}
+
+{% block body %}
+{% include "_top_menu.html" %}
+<ul>
+  {% for date in dates %}
+  <li>
+    <a href="/?date={{ date }}">{{ date }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
