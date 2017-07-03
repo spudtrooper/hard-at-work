@@ -26,55 +26,55 @@
 "use strict";
 
 (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["vis"] = factory();
-	else
-		root["vis"] = factory();
+  if(typeof exports === 'object' && typeof module === 'object')
+    module.exports = factory();
+  else if(typeof define === 'function' && define.amd)
+    define([], factory);
+  else if(typeof exports === 'object')
+    exports["vis"] = factory();
+  else
+    root["vis"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/  // The module cache
+/******/  var installedModules = {};
 
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
+/******/  // The require function
+/******/  function __webpack_require__(moduleId) {
 
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
+/******/    // Check if module is in cache
+/******/    if(installedModules[moduleId])
+/******/      return installedModules[moduleId].exports;
 
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
-/******/ 		};
+/******/    // Create a new module (and put it into the cache)
+/******/    var module = installedModules[moduleId] = {
+/******/      exports: {},
+/******/      id: moduleId,
+/******/      loaded: false
+/******/    };
 
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/    // Execute the module function
+/******/    modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
+/******/    // Flag the module as loaded
+/******/    module.loaded = true;
 
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+/******/    // Return the exports of the module
+/******/    return module.exports;
+/******/  }
 
 
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
+/******/  // expose the modules object (__webpack_modules__)
+/******/  __webpack_require__.m = modules;
 
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
+/******/  // expose the module cache
+/******/  __webpack_require__.c = installedModules;
 
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/  // __webpack_public_path__
+/******/  __webpack_require__.p = "";
 
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
+/******/  // Load entry module and return exports
+/******/  return __webpack_require__(0);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -189,7 +189,7 @@ return /******/ (function(modules) { // webpackBootstrap
       var match = ASPDateRegex.exec(object);
       if (match) {
         return true;
-      } else if (!isNaN(Date.parse(object))) {
+      } else if (!isNaN(stringToDate(object).getTime())) {
         return true;
       }
     }
@@ -499,7 +499,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
       case 'number':
       case 'Number':
-        if (exports.isString(object) && !isNaN(Date.parse(object))) {
+        if (exports.isString(object) && 
+            !isNaN(stringToDate(object).getTime())) {
           return moment(object).valueOf();
         } else {
           return Number(object.valueOf());
@@ -7495,14 +7496,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
   module.exports = function(module) {
-  	if(!module.webpackPolyfill) {
-  		module.deprecate = function() {};
-  		module.paths = [];
-  		// module.parent = undefined by default
-  		module.children = [];
-  		module.webpackPolyfill = 1;
-  	}
-  	return module;
+    if(!module.webpackPolyfill) {
+      module.deprecate = function() {};
+      module.paths = [];
+      // module.parent = undefined by default
+      module.children = [];
+      module.webpackPolyfill = 1;
+    }
+    return module;
   }
 
 
@@ -7511,7 +7512,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports) {
 
   function webpackContext(req) {
-  	throw new Error("Cannot find module '" + req + "'.");
+    throw new Error("Cannot find module '" + req + "'.");
   }
   webpackContext.keys = function() { return []; };
   webpackContext.resolve = webpackContext;
@@ -9630,8 +9631,8 @@ return /******/ (function(modules) { // webpackBootstrap
     verticalRatio: 0.5, // 0.1 to 1.0, where 1.0 results in a 'cube'
 
     dotSizeRatio: 0.02, // size of the dots as a fraction of the graph width
-    dotSizeMinFraction: 0.5, // size of min-value dot as a fraction of dotSizeRatio	
-    dotSizeMaxFraction: 2.5, // size of max-value dot as a fraction of dotSizeRatio	
+    dotSizeMinFraction: 0.5, // size of min-value dot as a fraction of dotSizeRatio 
+    dotSizeMaxFraction: 2.5, // size of max-value dot as a fraction of dotSizeRatio 
 
     showAnimationControls: autoByDefault,
     animationInterval: 1000, // milliseconds
@@ -21273,7 +21274,7 @@ return /******/ (function(modules) { // webpackBootstrap
       var selected;
 
       if (item) {
-        // update item   	
+        // update item    
         if (!constructor || !(item instanceof constructor)) {
           // item type has changed, delete the item and recreate it
           selected = item.selected; // preserve selection of this item
