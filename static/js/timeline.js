@@ -93,8 +93,9 @@ function createTimeline(date) {
   };
   if (date) {
     // Pad the range by an hour on each side.
-    var startDate = new Date(Date.parse(minDate) - 60 * 60 * 1000);
-    var endDate = new Date(Date.parse(maxDate) + 60 * 60 * 1000);
+    var nudge = 60 * 60 * 1000;
+    var startDate = new Date(stringToDate(minDate).getTime() - nudge);
+    var endDate = new Date(stringToDate(maxDate).getTime() + nudge);
     options['start'] = String(startDate);
     options['end'] = String(endDate);
   }

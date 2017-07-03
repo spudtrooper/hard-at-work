@@ -7,8 +7,10 @@ threadsafe: true
 handlers:
 - url: /css
   static_dir: static/css
+  expiration: 1s
 - url: /js
   static_dir: static/js
+  expiration: 1s
 - url: /import_tweets
   login: admin
   script: main.cron
