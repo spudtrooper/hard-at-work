@@ -74,7 +74,8 @@ def ImportTweets(since, until):
     since = datetime.now().date()
   if not until:
     until = since + timedelta(days=1)
-  url = ('http://jeffpalm.com/twitterer/twitter.php?u=realDonaldTrump&since=%s&until=%s' % 
+  url = ('http://jeffpalm.com/twitterer/twitter.php?'
+         'u=realDonaldTrump&since=%s&until=%s' % 
          (str(since), str(until)))
   logging.info('since=%s', since)
   logging.info('until=%s', until)

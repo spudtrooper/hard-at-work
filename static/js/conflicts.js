@@ -41,6 +41,6 @@ function render(conflicts) {
   $('#conflicts').show();
 }
 
-function init(date) {
+function init() {
   getWithCallback('/getconflicts', render);
 }
