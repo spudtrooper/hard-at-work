@@ -9,3 +9,6 @@ cron:
 - description: create conflicts
   url: /create_conflicts
   schedule: every 1 hours
+- description: remove duplicate events
+  url: /delete_duplicate_events
+  schedule: every 1 hours

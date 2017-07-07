@@ -120,7 +120,14 @@ https://web.archive.org/web/20170701050001/https://www.whitehouse.gov/1600daily 
 https://web.archive.org/web/20170702050002/https://www.whitehouse.gov/1600daily \
 "
 
-ALL=$ALL3
+ALL4="\
+https://web.archive.org/web/20170703050001/https://www.whitehouse.gov/1600daily \
+https://web.archive.org/web/20170704050002/https://www.whitehouse.gov/1600daily \
+https://web.archive.org/web/20170705050001/https://www.whitehouse.gov/1600daily \
+https://web.archive.org/web/20170706050001/https://www.whitehouse.gov/1600daily \
+"
+
+ALL=$ALL4
 
 for url in $ALL; do
     req="$BASE?url=$url"

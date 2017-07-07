@@ -71,9 +71,9 @@ def ImportTweets(since, until):
   existing_tweets = []
   imported_tweets = []
   if not since:
-    since = datetime.now().date()
+    since = datetime.now().date() - timedelta(days=1)
   if not until:
-    until = since + timedelta(days=1)
+    until = since + timedelta(days=2)
   url = ('http://jeffpalm.com/twitterer/twitter.php?'
          'u=realDonaldTrump&since=%s&until=%s' % 
          (str(since), str(until)))
@@ -353,6 +353,33 @@ class CreateConflictsHandler(webapp.RequestHandler):
     }
     RenderJsonWithOK(self.response, data)
 
+class DeleteDuplicateEventsHandler(webapp.RequestHandler):
+  def get(self):
+    events = db.GqlQuery('SELECT * FROM Event')
+    event_count = helpers.Len(events)
+    logging.info('Found %d events', event_count)
+
+    # Map the event dates to an event. Delete collisions.
+    event_map = {}
+    def Key(d):
+      return ':'.join([str(d.start_date), d.title])
+    deleted_event_count = 0
+    for e in events:
+      key = Key(e)
+      if key in event_map:
+        logging.info('Deleting event %s', e)
+        e.delete()
+        deleted_event_count += 1
+      else:
+        event_map[key] = True
+
+    # Render the result.
+    data = {
+      'deleted_event_count': deleted_event_count,
+      'event_count': event_count,
+    }
+    RenderJsonWithOK(self.response, data)
+
 class ConflictsPageHandler(webapp.RequestHandler):
   def get(self):
     RenderTemplate(self.response, 'conflicts')
@@ -372,4 +399,5 @@ cron = webapp.WSGIApplication(
   [('/import_tweets', ImportTweetsHandler),
    ('/import_events', ImportEventsHandler),
    ('/create_conflicts', CreateConflictsHandler),
+   ('/delete_duplicate_events', DeleteDuplicateEventsHandler),
  ], debug=True)

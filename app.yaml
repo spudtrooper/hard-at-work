@@ -20,5 +20,8 @@ handlers:
 - url: /create_conflicts
   login: admin
   script: main.cron
+- url: /delete_duplicate_events
+  login: admin
+  script: main.cron
 - url: /.*
   script: main.app
