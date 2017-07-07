@@ -81,6 +81,7 @@ def ImportTweets(since, until):
   logging.info('until=%s', until)
   logging.info('url=%s', url)
   tweets_text = helpers.UrlFetch(url)
+  logging.info('tweets_text=%s', tweets_text)
   tweets_json = json.loads(tweets_text)
   for tweet in tweets_json['tweets']:
     date_str = GetString(tweet, 'date')
