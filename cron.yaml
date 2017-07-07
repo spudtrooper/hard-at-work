@@ -1,7 +1,7 @@
 cron:
 
 - description: import events
-  url: /import_events
+  url: /import_tweets
   schedule: every 1 hours
 - description: import tweets
   url: /import_events
