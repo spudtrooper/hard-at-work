@@ -7,11 +7,11 @@
 }
 
 #conflicts .row .block:nth-child(2) {
-    width: 40%;
+    width: 30%;
 }
 
 #conflicts .row .block:nth-child(3) {
-    width: 20%;
+    width: 30%;
 }
 
 #conflicts .date {

@@ -36,6 +36,7 @@ class Tweet(db.Model):
 class Event(db.Model):
   start_date = db.DateTimeProperty()
   title = db.StringProperty(multiline=True)
+  description = db.StringProperty(multiline=True)
   end_date = db.DateTimeProperty()
   source_url = db.StringProperty()
 

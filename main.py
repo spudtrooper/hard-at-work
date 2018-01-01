@@ -23,6 +23,8 @@ from model import Conflict
 from model import Event
 from model import Tweet
 
+import util
+
 # ----------------------------------------------------------------------
 # Utilities
 # ----------------------------------------------------------------------
@@ -80,7 +82,7 @@ def ImportTweets(since, until):
   logging.info('since=%s', since)
   logging.info('until=%s', until)
   logging.info('url=%s', url)
-  tweets_text = helpers.UrlFetch(url)
+  tweets_text = util.UrlFetch(url)
   logging.info('tweets_text=%s', tweets_text)
   tweets_json = json.loads(tweets_text)
   for tweet in tweets_json['tweets']:
@@ -111,7 +113,7 @@ def ImportTweets(since, until):
     tweets_with_date = db.GqlQuery(
       'SELECT * FROM Tweet WHERE date = :1', date)
     if not tweets_with_date or not any(tweets_with_date):
-      logging.info('Adding...')
+      logging.info('Adding tweet[%s]', new_tweet)
       new_tweet.put()
       imported_tweets.append(new_tweet)
     else:
@@ -119,8 +121,8 @@ def ImportTweets(since, until):
       existing_tweets.append(new_tweet)
   return imported_tweets, existing_tweets
 
-def ImportEvents(url):
-  events = helpers.ImportEvents(url)
+def ImportEvents():
+  events = helpers.ImportEvents()
 
   logging.info('events=[%s]', events)
 
@@ -128,9 +130,10 @@ def ImportEvents(url):
   existing_events = []
   for e in events:
     events_with_date = db.GqlQuery(
-      'SELECT * FROM Event WHERE start_date = :1 and end_date = :2', e.start_date, e.end_date)
+      'SELECT * FROM Event WHERE start_date = :1 and end_date = :2',
+      e.start_date, e.end_date)
     if not events_with_date or not any(events_with_date):
-      logging.info('Adding...')
+      logging.info('Adding event[%s]', e)
       e.put()
       imported_events.append(e)
     else:
@@ -194,9 +197,9 @@ class ImportTweetsHandler(webapp.RequestHandler):
 class ImportEventsHandler(webapp.RequestHandler):
   def get(self):
     url = self.request.get('url')
-    if not url:
-      url = 'https://www.whitehouse.gov/1600daily'
-    imported_events, existing_events = ImportEvents(url)
+    if url:
+      logging.info('URL paramenter no longer supported')
+    imported_events, existing_events = ImportEvents()
     template_values = {
       'url': url,
       'imported_events': imported_events,
