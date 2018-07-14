@@ -10,29 +10,29 @@ def ImportEvents():
   """
   Returns: A dict with the same attributes as model.Event.
   """
-  url = 'https://factba.se/rss/calendar-full.json'
+  url = 'https://media-cdn.factba.se/rss/json/calendar-full.json'
   text = util.UrlFetch(url)
   events_json = json.loads(text)
   events = []
   for e in events_json:
     """
     {
-      "date": "2018-01-01",
-      "time": "07:30:00",
-      "time_formatted": "7:30 AM",
-      "year": "2018",
-      "month": "January",
-      "day": "1",
-      "day_of_week": "Monday",
-      "type": "President Schedule",
-      "details": "Out-of-Town Travel Pool Call Time",
-      "location": null,
-      "coverage": null,
-      "daily_text": "In the evening ...",
-      "url": null,
-      "newmonth": true,
-      "daycount": "4",
-      "lastdaily": false
+    "date": "2018-07-14",
+    "time": null,
+    "time_formatted": null,
+    "year": "2018",
+    "month": "July",
+    "day": "14",
+    "day_of_week": "Saturday",
+    "type": "President Schedule",
+    "details": "The President has no public events scheduled.",
+    "location": "Trump Turnberry, Girvan, Scotland, United Kingdom",
+    "coverage": null,
+    "daily_text": null,
+    "url": null,
+    "newmonth": true,
+    "daycount": "2",
+    "lastdaily": false
     },
     """
     if e['type'] != 'President Schedule':
